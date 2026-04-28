@@ -1,4 +1,4 @@
-# 📚 Cyber-Library Manager
+# 📚 Kitaab-Library Manager
 
 > A production-grade **Library Management System** built with **Angular 21** using a fully **Standalone Component** architecture. It features complex borrowing workflows, automated fine calculations, role-based access control, and a high-tech **Cyber-Glass** UI.
 

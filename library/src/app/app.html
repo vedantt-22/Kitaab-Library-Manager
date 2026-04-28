@@ -1,0 +1,138 @@
+<!-- ============================= -->
+<!-- APP SHELL: Sidebar + Header -->
+<!-- ============================= -->
+
+<div class="app-layout" [class.sidebar-collapsed]="sidebarCollapsed">
+  <!-- ——— SIDEBAR ——— -->
+  <aside class="sidebar">
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <a routerLink="/">
+        <span class="logo-icon">📚</span>
+        <span class="logo-text">Library</span>
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+      <!-- Public -->
+      <a
+        routerLink="/books"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: false }"
+        class="nav-item"
+      >
+        <span class="nav-icon">📖</span>
+        <span class="nav-label">Catalogue</span>
+      </a>
+
+      <!-- Logged In User -->
+      <a
+        *ngIf="authService.currentUser$ | async as user"
+        routerLink="/my-books"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">📕</span>
+        <span class="nav-label">My Books</span>
+      </a>
+
+      <!-- Profile (Logged In Users) -->
+      <a
+        *ngIf="authService.currentUser$ | async"
+        routerLink="/profile"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">👤</span>
+        <span class="nav-label">Profile</span>
+      </a>
+
+      <!-- Admin Section -->
+      <div *appRole="['admin', 'librarian']" class="nav-section">
+        <span class="nav-section-label">Admin</span>
+      </div>
+
+      <a
+        *appRole="['admin', 'librarian']"
+        routerLink="/librarian"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-item"
+      >
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+
+      <a
+        *appRole="['admin', 'librarian']"
+        routerLink="/librarian/books"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">📝</span>
+        <span class="nav-label">Manage Books</span>
+      </a>
+
+      <a
+        *appRole="['admin', 'librarian']"
+        routerLink="/librarian/users"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">👥</span>
+        <span class="nav-label">Manage Users</span>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <ng-container *ngIf="authService.currentUser$ | async as user">
+        <div class="user-mini">
+          <div class="avatar-small">{{ user.fullName.charAt(0) }}</div>
+          <span class="nav-label user-name">{{ user.fullName }}</span>
+        </div>
+      </ng-container>
+    </div>
+  </aside>
+
+  <!-- ——— MAIN WRAPPER ——— -->
+  <div class="main-wrapper">
+    <!-- ——— TOP HEADER ——— -->
+    <header class="top-header">
+      <!-- Left: Toggle + Breadcrumb -->
+      <div class="header-left">
+        <button class="sidebar-toggle" (click)="toggleSidebar()">
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+        </button>
+      </div>
+
+      <!-- Right: Auth actions -->
+      <div class="header-right">
+        <!-- If Logged In -->
+        <ng-container *ngIf="authService.currentUser$ | async as user; else guest">
+          <span class="welcome-text">
+            Welcome, <strong>{{ user.fullName }}</strong>
+          </span>
+          <div class="header-avatar">{{ user.fullName.charAt(0) }}</div>
+          <button class="danger-btn" (click)="logout()">Logout</button>
+        </ng-container>
+
+        <!-- If NOT Logged In -->
+        <ng-template #guest>
+          <a routerLink="/auth/login" routerLinkActive="active" class="header-link"> Login </a>
+          <a routerLink="/auth/register" routerLinkActive="active" class="header-link btn-primary">
+            Register
+          </a>
+        </ng-template>
+      </div>
+    </header>
+
+    <!-- ——— PAGE CONTENT ——— -->
+    <main class="page-content fade-in">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

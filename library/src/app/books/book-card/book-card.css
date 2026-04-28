@@ -1,0 +1,145 @@
+/* ================================================================
+   BOOK CARD — Dark Neon Glassmorphism
+   ================================================================ */
+
+.book-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-card), var(--shadow-inner);
+  transition: var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.book-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+  opacity: 0;
+  transition: var(--transition-base);
+}
+
+.book-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: var(--bg-glass-hover);
+  box-shadow: var(--shadow-elevated), var(--glow-blue);
+}
+
+.book-card:hover::before {
+  opacity: 1;
+}
+
+.book-card.unavailable {
+  opacity: 0.45;
+}
+
+/* ——— Header ——— */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.card-header h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.category {
+  background: rgba(176, 38, 255, 0.12);
+  color: var(--neon-purple);
+  border: 1px solid rgba(176, 38, 255, 0.2);
+  padding: 0.15rem 0.6rem;
+  font-size: 0.7rem;
+  border-radius: var(--radius-xl);
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ——— Content ——— */
+.author {
+  font-weight: 500;
+  margin: 0.5rem 0;
+  color: var(--neon-blue);
+  font-size: 0.88rem;
+}
+
+.description {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.meta {
+  font-size: 0.78rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+}
+
+.meta span {
+  color: var(--text-secondary);
+}
+
+/* ——— Actions ——— */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.details-btn {
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  transition: var(--transition-base);
+}
+
+.details-btn:hover {
+  color: var(--neon-blue);
+  border-color: rgba(0, 245, 255, 0.2);
+  background: rgba(0, 245, 255, 0.06);
+  text-decoration: none;
+}
+
+.borrow-btn {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.12), rgba(176, 38, 255, 0.12));
+  color: var(--neon-blue);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: var(--transition-base);
+}
+
+.borrow-btn:hover {
+  box-shadow: var(--glow-blue);
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(176, 38, 255, 0.2));
+}
+
+.borrow-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  box-shadow: none;
+}

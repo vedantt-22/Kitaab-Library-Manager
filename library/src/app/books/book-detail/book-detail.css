@@ -1,0 +1,83 @@
+/* ================================================================
+   BOOK DETAIL — Dark Neon Theme
+   ================================================================ */
+
+:host {
+  display: block;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.detail-container {
+  padding: var(--space-xl) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.detail-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  width: 100%;
+  max-width: 850px;
+  box-shadow: var(--shadow-card), var(--shadow-inner);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.category {
+  background: rgba(176, 38, 255, 0.12);
+  color: var(--neon-purple);
+  border: 1px solid rgba(176, 38, 255, 0.2);
+  padding: 0.2rem 0.8rem;
+  border-radius: var(--radius-xl);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.meta {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+.meta p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.meta p strong {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.description {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.description h3 {
+  color: var(--neon-blue);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.description p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}

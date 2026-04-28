@@ -1,0 +1,47 @@
+<div class="books-container">
+
+  <h2>Library Catalogue</h2>
+
+  <div class="search-box">
+    <input 
+      #searchInput 
+      type="text" 
+      (input)="onSearch(searchInput.value)" 
+      placeholder="Search books by title or ISBN..."
+      class="neon-input"
+    >
+  <select (change)="onCategoryChange($event)" class="cyber-select">
+    <option value="all">All Genres</option>
+    <option value="Fiction">Fiction</option>
+    <option value="Science Fiction">Science Fiction</option>
+    <option value="Fantasy">Fantasy</option>
+    <option value="Adventure">Adventure</option>
+    <option value="Romance">Romance</option>
+    <option value="Self-help">Self-help</option>
+  </select>
+</div>
+
+  <div class="grid">
+    <ng-container *ngIf="books$ | async as books">
+      
+      <app-book-card
+        *ngFor="let book of books; trackBy: trackById"
+        [book]="book"
+        [isLoggedIn]="(isLoggedIn$ | async) === true"
+        (borrowClicked)="onBorrow($event)">
+      </app-book-card>
+
+      <div *ngIf="books.length === 0" class="empty-state">
+        <p>No books found matching your search.</p>
+      </div>
+
+    </ng-container>
+  </div>
+
+</div>
+
+<app-borrow-action 
+  [bookToBorrow]="selectedBookId"
+  (borrowSuccess)="triggerRefresh()"
+  (flowClosed)="selectedBookId = null">
+</app-borrow-action>

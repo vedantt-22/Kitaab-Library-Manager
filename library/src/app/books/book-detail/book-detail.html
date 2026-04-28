@@ -1,0 +1,39 @@
+<div class="detail-container">
+
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+  <div class="detail-card" *ngIf="!isLoading && book">
+
+    <div class="header">
+      <h2>{{ book.title | titlecase }}</h2>
+      <span class="category">
+        {{ book.category }}
+      </span>
+    </div>
+
+    <div class="meta">
+
+    
+      <p><strong>Published Year:</strong> {{ book.publishedYear }}</p>
+      <p><strong>Published Date:</strong> {{ book.publishedDate | date }}</p>
+
+      <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+      <p><strong>Position:</strong> {{ book.position }}</p>
+
+      <p><strong>Total Copies:</strong> {{ book.totalCopies }}</p>
+      <p><strong>Available Copies:</strong> {{ book.availableCopies }}</p>
+      <p><strong>Issued Copies:</strong> {{ book.issuedCopies }}</p>
+
+      <p><strong>Added Date:</strong> {{ book.addedDate | date }}</p>
+      <p><strong>Added By:</strong> {{ book.addedBy }}</p>
+
+    </div>
+
+    <div class="description">
+      <h3>Description</h3>
+      <p>{{ book.description }}</p>
+    </div>
+
+  </div>
+
+</div>

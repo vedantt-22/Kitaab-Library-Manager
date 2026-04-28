@@ -1,0 +1,115 @@
+/* ================================================================
+   BOOK LIST — Dark Neon Theme
+   ================================================================ */
+
+:host {
+  display: block;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.books-container {
+  padding: 0;
+}
+
+.books-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ——— Search Box ——— */
+/* Container for the search and filter */
+.search-box {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  max-width: 900px;
+  margin: 20px auto 40px auto;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03); /* Subtle glass background */
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+/* The Search Input */
+.neon-input {
+  flex: 3; /* Takes up more space than the dropdown */
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.neon-input:focus {
+  border-color: #00f5ff;
+  box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* The Category Dropdown */
+.cyber-select {
+  flex: 1; /* More compact than the input */
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(168, 85, 247, 0.3); /* Purple accent for diversity */
+  color: #fff;
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  appearance: none; /* Removes default browser styling */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23a855f7'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.cyber-select:focus {
+  border-color: #a855f7;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+}
+
+/* Styling the dropdown options */
+.cyber-select option {
+  background: #0f172a; /* Dark background for options */
+  color: #fff;
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 600px) {
+  .search-box {
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  .neon-input, .cyber-select {
+    width: 100%;
+    flex: none;
+  }
+}
+
+
+/* ——— Book Grid ——— */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.empty-state {
+  margin-top: var(--space-xl);
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: var(--space-2xl);
+}

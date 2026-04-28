@@ -1,0 +1,25 @@
+<div class="overlay" *ngIf="isOpen">
+  <div class="dialog">
+    <h3>{{ dialogMode === 'confirm' ? 'Confirm Action' : 'Notification' }}</h3>
+    
+    <div class="content">
+      <p>{{ message }}</p>
+    </div>
+
+    <div class="actions">
+  
+  <ng-container *ngIf="dialogMode === 'confirm'">
+    <button class="cancel-btn" (click)="onCancel()">Cancel</button>
+    <button class="confirm-btn" (click)="onConfirm()">Confirm</button>
+  </ng-container>
+
+  <button 
+    *ngIf="dialogMode === 'alert'" 
+    class="confirm-btn" 
+    (click)="onCancel()">
+    Ok
+  </button>
+
+    </div>
+  </div>
+</div>

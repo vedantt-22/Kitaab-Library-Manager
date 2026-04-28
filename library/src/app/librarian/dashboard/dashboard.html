@@ -1,0 +1,98 @@
+<header>
+  <h2>Dashboard</h2>
+</header>
+<ng-container *ngIf="vm$ | async as vm">
+    <app-loading-spinner *ngIf="vm.isLoading"></app-loading-spinner>
+
+    <p class="error" *ngIf="vm.errorMessage">{{ vm.errorMessage }}</p>
+
+    <div *ngIf="vm.stats && !vm.isLoading" class="stats-grid">
+      <div class="card">
+        <div class="card-header">
+          <h3>Total Books</h3>
+          <span class="icon">📚</span>
+        </div>
+        <p class="main-val">{{ vm.stats.books.totalBooks }}</p>
+        <small>Available: {{ vm.stats.books.totalBooks - vm.stats.issues.activeIssues }}</small>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Total Users</h3>
+          <span class="icon">👥</span>
+        </div>
+        <p class="main-val">{{ vm.stats.users.totalUsers }}</p>
+        <small>Active Members</small>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Active Loans</h3>
+          <span class="icon">🔄</span>
+        </div>
+        <p class="main-val">{{ vm.stats.issues.activeIssues }}</p>
+        <small>Currently with users</small>
+      </div>
+
+      <div class="card debt">
+        <div class="card-header">
+          <h3>Outstanding Fines</h3>
+          <span class="icon">⚠️</span>
+        </div>
+        <p class="main-val">{{ vm.stats.fines.totalUnpaidFines | currency }}</p>
+        <small>Total Debt</small>
+      </div>
+
+      <div class="card revenue">
+        <div class="card-header">
+          <h3>Total Collected</h3>
+          <span class="icon">💰</span>
+        </div>
+        <p class="main-val">{{ vm.stats.fines.totalPaidFines | currency }}</p>
+        <small>Lifetime Revenue</small>
+      </div>
+    </div>
+
+    <div *ngIf="!vm.isLoading && vm.overdueReports.length > 0" class="overdue-section">
+      <div class="section-header">
+        <h3>Overdue Report</h3>
+        <span class="badge danger">{{ vm.overdueReports.length }} Items At Risk</span>
+      </div>
+
+      <table class="overdue-table">
+        <thead>
+          <tr>
+            <th>User Info</th>
+            <th>Book Title</th>
+            <th>Due Date</th>
+            <th>Days Overdue</th>
+            <th>Fine Accrued</th>
+            <th>Risk Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of vm.overdueReports; trackBy: trackByReport">
+            <td>
+              <div class="user-cell">
+                <strong>{{ report.user.username }}</strong>
+                <span class="email-sub">{{ report.user.email }}</span>
+              </div>
+            </td>
+            <td>{{ report.book.title }}</td>
+            <td>{{ report.dueDate | date:'mediumDate' }}</td>
+            <td>
+              <span class="overdue-days">{{ report.daysOverdue }} days</span>
+            </td>
+            <td class="fine-cell">{{ report.currentFine | currency }}</td>
+            <td>
+              <span class="status-pill" [class.critical]="report.daysOverdue > 14">
+                {{ report.daysOverdue > 14 ? 'CRITICAL' : 'WARNING' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+
+  

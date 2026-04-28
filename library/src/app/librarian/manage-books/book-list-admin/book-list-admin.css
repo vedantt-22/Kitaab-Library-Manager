@@ -1,0 +1,127 @@
+/* ================================================================
+   BOOK LIST ADMIN — Dark Neon Theme
+   ================================================================ */
+
+:host {
+  display: block;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.admin-container {
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.header h2 {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.12), rgba(176, 38, 255, 0.12));
+  color: var(--neon-blue);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: var(--transition-base);
+}
+
+.primary-btn:hover {
+  box-shadow: var(--glow-blue);
+  transform: translateY(-1px);
+}
+
+/* ——— Admin Table ——— */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: var(--border-glass);
+}
+
+.admin-table th {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--neon-blue);
+  background: linear-gradient(90deg, rgba(0, 245, 255, 0.06), rgba(176, 38, 255, 0.06));
+  border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+}
+
+.admin-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.admin-table tbody tr {
+  transition: var(--transition-fast);
+}
+
+.admin-table tbody tr:hover {
+  background: rgba(0, 245, 255, 0.04);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ——— Action Buttons ——— */
+.edit-btn {
+  background: rgba(57, 255, 20, 0.1);
+  color: var(--neon-green);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  padding: 0.35rem 0.7rem;
+  margin-right: 0.4rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: var(--transition-base);
+}
+
+.edit-btn:hover {
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.25);
+  background: rgba(57, 255, 20, 0.18);
+}
+
+.delete-btn {
+  background: rgba(255, 45, 149, 0.1);
+  color: var(--neon-pink);
+  border: 1px solid rgba(255, 45, 149, 0.2);
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: var(--transition-base);
+}
+
+.delete-btn:hover {
+  box-shadow: 0 0 12px rgba(255, 45, 149, 0.25);
+  background: rgba(255, 45, 149, 0.18);
+}
+
+.error {
+  color: var(--neon-pink);
+  text-align: center;
+  padding: var(--space-md);
+}

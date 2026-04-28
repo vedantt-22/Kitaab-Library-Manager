@@ -1,0 +1,417 @@
+/* ================================================================
+   MY BOOKS — Dark Neon Theme
+   ================================================================ */
+
+:host {
+  display: block;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.my-books-container {
+  padding: 0;
+}
+
+/* Add this to my-books.css */
+
+/* Add extra top margin ONLY when the fines-summary is missing */
+.table-container:first-child {
+  margin-top: 20px;
+}
+
+/* Ensure the header looks prominent as the primary element */
+.dashboard-header {
+  border-left: 4px solid #00f5ff;
+  padding-left: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 35px;
+  border-left: 4px solid #00f5ff; /* Cyan accent bar */
+  padding-left: 20px;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ffffff, #00f5ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+
+.admin-badge {
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  background: rgba(0, 245, 255, 0.1);
+  border: 1px solid #00f5ff;
+  color: #00f5ff;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+
+
+/* ============================
+   STATUS BADGES (Aligned with Backend)
+============================ */
+/* Matches db.status: 'issued' */
+.issued {
+  color: var(--neon-blue);
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(0, 245, 255, 0.3);
+}
+
+/* Matches db.status: 'overdue' */
+.overdue {
+  color: var(--neon-pink);
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 45, 149, 0.4);
+}
+
+/* Matches db.status: 'returned' */
+.returned {
+  color: var(--text-muted);
+  font-weight: 500;
+  opacity: 0.6;
+}
+
+/* ============================
+   FINE HIGHLIGHTS
+============================ */
+.has-fine {
+  color: var(--neon-pink);
+  font-weight: 700;
+}
+
+.text-danger {
+  color: var(--neon-pink) !important;
+  font-weight: 600;
+}
+
+/* ============================
+   PAY BUTTON STYLING
+============================ */
+/* Using a Gold/Amber neon for payments */
+.pay-btn {
+  background: rgba(255, 215, 0, 0.1) !important;
+  color: #ffd700 !important;
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.1);
+}
+
+.pay-btn:hover:not(:disabled) {
+  background: rgba(255, 215, 0, 0.2) !important;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3) !important;
+}
+
+/* ============================
+   FINE SUMMARY DASHBOARD
+============================ */
+.fine-summary {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-left: 4px solid var(--neon-purple);
+}
+
+.fine-summary p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+/* Specific styling for the Pending/Balance amount */
+.fine-summary p:last-of-type {
+  color: var(--neon-pink);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 45, 149, 0.2);
+}
+
+.fine-summary p:last-of-type::before {
+  content: 'BALANCE DUE';
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+
+/* Success Toast Message */
+.success-toast {
+  background: rgba(0, 245, 255, 0.08);
+  color: var(--neon-blue);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideIn 0.3s ease-out;
+  box-shadow: 0 0 15px rgba(0, 245, 255, 0.1);
+}
+
+.neon-icon {
+  font-weight: bold;
+  text-shadow: 0 0 8px var(--neon-blue);
+}
+
+.returned-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================
+   HEADINGS
+============================ */
+.my-books-container h2 {
+  margin-bottom: var(--space-lg);
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================
+   TABLE STYLING
+============================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: var(--border-glass);
+  margin-bottom: var(--space-xl);
+}
+
+thead {
+  background: linear-gradient(90deg, rgba(0, 245, 255, 0.06), rgba(176, 38, 255, 0.06));
+}
+
+th {
+  text-align: left;
+  padding: 0.9rem 1rem;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--neon-blue);
+  border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+}
+
+td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+tr:hover {
+  background-color: rgba(0, 245, 255, 0.03);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* ============================
+   STATUS BADGES
+============================ */
+.active {
+  color: var(--neon-green);
+  font-weight: 600;
+}
+
+.overdue {
+  color: var(--neon-pink);
+  font-weight: 600;
+}
+
+.returned {
+  color: var(--text-muted);
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.error-message {
+  background: rgba(255, 45, 149, 0.08);
+  color: var(--neon-pink);
+  border: 1px solid rgba(255, 45, 149, 0.15);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+  font-size: 0.9rem;
+}
+
+/* ============================
+   BUTTONS
+============================ */
+button {
+  padding: 0.35rem 0.7rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: var(--transition-base);
+  margin-right: 0.4rem;
+  font-weight: 500;
+}
+
+/* Renew */
+button:nth-of-type(1) {
+  background: rgba(176, 38, 255, 0.1);
+  color: var(--neon-purple);
+  border: 1px solid rgba(176, 38, 255, 0.2);
+}
+
+button:nth-of-type(1):hover {
+  box-shadow: 0 0 12px rgba(176, 38, 255, 0.25);
+  background: rgba(176, 38, 255, 0.18);
+}
+
+/* Return */
+button:nth-of-type(2) {
+  background: rgba(0, 245, 255, 0.1);
+  color: var(--neon-blue);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+}
+
+button:nth-of-type(2):hover {
+  box-shadow: var(--glow-blue);
+  background: rgba(0, 245, 255, 0.18);
+}
+
+button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Container Logic */
+.summary-wrapper {
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+.dashboard-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Base Glass Card */
+.glass-card {
+  position: relative;
+  background: rgba(15, 15, 25, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 1rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.glass-card:hover {
+  transform: scale(1.02) translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Card Content Styling */
+.card-header label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
+}
+
+.card-body .value {
+  font-size: 2.1rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+}
+
+/* Neon Glow Themes */
+.cyan-glow { box-shadow: 0 0 15px rgba(0, 245, 255, 0.05); }
+.cyan-glow .value { color: #00f5ff; text-shadow: 0 0 20px rgba(0, 245, 255, 0.4); }
+
+.purple-glow { box-shadow: 0 0 15px rgba(176, 38, 255, 0.05); }
+.purple-glow .value { color: #b026ff; text-shadow: 0 0 20px rgba(176, 38, 255, 0.4); }
+
+.pink-glow { box-shadow: 0 0 15px rgba(255, 0, 85, 0.05); }
+.pink-glow .value.accent { color: #ff0055; text-shadow: 0 0 25px rgba(255, 0, 85, 0.5); }
+
+/* Danger Pulse Animation */
+.danger-pulse {
+  border: 1px solid rgba(255, 0, 85, 0.3);
+  animation: border-glow 2s infinite alternate;
+}
+
+@keyframes border-glow {
+  from { box-shadow: 0 0 5px rgba(255, 0, 85, 0.1); }
+  to { box-shadow: 0 0 25px rgba(255, 0, 85, 0.3); }
+}
+
+/* Background Backglow layer */
+.glow-layer {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  filter: blur(40px);
+  border-radius: 50%;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.cyan-glow .glow-layer { background: #00f5ff; }
+.purple-glow .glow-layer { background: #b026ff; }
+.pink-glow .glow-layer { background: #ff0055; }
+
+/* ============================
+   HR Divider
+============================ */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  margin: var(--space-xl) 0;
+}

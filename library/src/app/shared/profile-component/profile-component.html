@@ -1,0 +1,63 @@
+<div class="profile-container">
+  <ng-container *ngIf="profileStats$ | async as data">
+    <div class="profile-card" *ngIf="data.user">
+      
+      <div class="profile-header">
+        <div class="profile-info">
+            <div class="avatar neon-border">
+              {{ getInitials(data.user.fullName) }}
+            </div>
+          <div class="role-container">
+            <h2 class="full-name">{{ data.user.fullName }}</h2>
+            <span class="role-badge" [attr.data-role]="data.user.role">
+              {{ data.user.role | titlecase }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="profile-grid">
+        <div class="profile-section">
+          <h3>Account Details</h3>
+          <div class="data-row">
+            <label>Username</label>
+            <p>{{ data.user.username }}</p>
+          </div>
+          <div class="data-row">
+            <label>Email</label>
+            <p>{{ data.user.email }}</p>
+          </div>
+          <div class="data-row">
+            <label>Account Status</label>
+            <p class="status-tag" [class.active]="data.user.isActive">
+              {{ data.user.isActive ? 'Active' : 'Deactivated' }}
+            </p>
+          </div>
+        </div>
+
+        <div class="profile-section">
+          <h3>Library Activity</h3>
+          <div class="data-row">
+            <label>Current Books Borrowed</label>
+            <p class="highlight-text">{{ data.user.currentBooksCount }}</p>
+          </div>
+          
+          <div class="data-row">
+            <label>Outstanding Balance</label>
+            <p [class.has-fines]="data.fines?.pendingFines! > 0">
+              {{ data.fines?.pendingFines | currency }}
+            </p>
+          </div>
+
+          <div class="data-row">
+            <label>Lifetime Paid</label>
+            <p class="text-dim">{{ data.fines?.paidFines | currency }}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </ng-container>
+</div>

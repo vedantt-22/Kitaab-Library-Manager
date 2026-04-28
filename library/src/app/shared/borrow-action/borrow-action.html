@@ -1,0 +1,7 @@
+<app-confirm-dialog
+      [isOpen]="isDialogOpen"
+      [message]="dialogMessage"
+      [dialogMode]="dialogMode"
+      (confirmed)="executeBorrow()"
+      (cancelled)="close()">
+    </app-confirm-dialog>

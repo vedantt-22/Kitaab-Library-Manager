@@ -1,0 +1,67 @@
+<div class="book-form-container">
+
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="form-card">
+
+    <h2>{{ isEditMode ? 'Edit Book' : 'Add New Book' }}</h2>
+
+    <!-- Title -->
+    <div class="form-group">
+      <label>Title *</label>
+      <input type="text" formControlName="title" />
+      <small class="error"
+             *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched">
+        Title is required (min 3 characters).
+      </small>
+    </div>
+
+    <!-- ISBN -->
+    <div class="form-group">
+      <label>ISBN</label>
+      <input type="text" formControlName="isbn" />
+    </div>
+
+
+    <!-- Category -->
+    <div class="form-group">
+      <label>Category</label>
+      <input type="text" formControlName="category" />
+    </div>
+
+    <!-- Published Year -->
+    <div class="form-group">
+      <label>Published Year</label>
+      <input type="number" formControlName="publishedYear" />
+    </div>
+
+    <!-- Total Copies -->
+    <div class="form-group">
+      <label>Total Copies *</label>
+      <input type="number" formControlName="totalCopies" min="1" />
+      <small class="error"
+             *ngIf="bookForm.get('totalCopies')?.invalid && bookForm.get('totalCopies')?.touched">
+        Must be at least 1.
+      </small>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label>Description *</label>
+      <textarea formControlName="description" rows="4"></textarea>
+      <small class="error"
+             *ngIf="bookForm.get('description')?.invalid && bookForm.get('description')?.touched">
+        Description is required.
+      </small>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit"
+            class="primary-btn"
+            [disabled]="bookForm.invalid">
+
+      {{ isEditMode ? 'Update Book' : 'Create Book' }}
+
+    </button>
+
+  </form>
+
+</div>

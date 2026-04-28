@@ -1,0 +1,75 @@
+<div class="user-container">
+
+  <h2>User Management</h2>
+
+  <p class="error-message" *ngIf="errorMessage">
+  {{ errorMessage }}
+</p>
+
+  <table *ngIf="users.length > 0; else noUsers">
+
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Books</th>
+        <th>Fines</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users; trackBy: trackById">
+
+        <td>{{ user.username }}</td>
+        <td>{{ user.fullName }}</td>
+        <td>{{ user.email }}</td>
+
+        <td>
+          <span [ngClass]="user.role">
+            {{ user.role | titlecase }}
+          </span>
+        </td>
+
+        <td>
+          <span [ngClass]="user.isActive ? 'active' : 'inactive'">
+            {{ user.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </td>
+
+        <td>
+          {{ user.currentBooksCount }} /
+          {{ user.maxBooksAllowed }}
+        </td>
+
+        <td>
+          {{ user.totalFines | currency }}
+        </td>
+
+        <td>
+          <button
+            class="role-btn"
+            (click)="toggleRole(user)">
+            Switch Role
+          </button>
+
+          <button
+            class="status-btn"
+            (click)="toggleActive(user)">
+            {{ user.isActive ? 'Deactivate' : 'Activate' }}
+          </button>
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+  <ng-template #noUsers>
+    <p>No users found.</p>
+  </ng-template>
+
+</div>

@@ -1,0 +1,129 @@
+/* ================================================================
+   USER LIST — Dark Neon Theme
+   ================================================================ */
+
+:host {
+  display: block;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.user-container {
+  padding: 0;
+}
+
+.user-container h2 {
+  margin-bottom: var(--space-lg);
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ——— Table ——— */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: var(--border-glass);
+}
+
+thead {
+  background: linear-gradient(90deg, rgba(0, 245, 255, 0.06), rgba(176, 38, 255, 0.06));
+}
+
+th {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--neon-blue);
+  border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+}
+
+td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+tr:hover {
+  background-color: rgba(0, 245, 255, 0.03);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* ——— Role Badges ——— */
+.user {
+  color: var(--neon-blue);
+  font-weight: 600;
+}
+
+.librarian {
+  color: var(--neon-purple);
+  font-weight: 600;
+}
+
+/* ——— Status ——— */
+.active {
+  color: var(--neon-green);
+  font-weight: 600;
+}
+
+.inactive {
+  color: var(--neon-pink);
+  font-weight: 600;
+}
+
+/* ——— Buttons ——— */
+button {
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-right: 0.4rem;
+  transition: var(--transition-base);
+  font-weight: 500;
+}
+
+.role-btn {
+  background: rgba(176, 38, 255, 0.1);
+  color: var(--neon-purple);
+  border: 1px solid rgba(176, 38, 255, 0.2);
+}
+
+.role-btn:hover {
+  box-shadow: 0 0 12px rgba(176, 38, 255, 0.25);
+  background: rgba(176, 38, 255, 0.18);
+}
+
+.status-btn {
+  background: rgba(0, 245, 255, 0.1);
+  color: var(--neon-blue);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+}
+
+.status-btn:hover {
+  box-shadow: var(--glow-blue);
+  background: rgba(0, 245, 255, 0.18);
+}
+
+/* ——— Error Message ——— */
+.error-message {
+  background: rgba(255, 45, 149, 0.08);
+  color: var(--neon-pink);
+  border: 1px solid rgba(255, 45, 149, 0.15);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+  font-size: 0.9rem;
+}

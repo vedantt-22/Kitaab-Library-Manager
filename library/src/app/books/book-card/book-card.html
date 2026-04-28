@@ -1,0 +1,44 @@
+<div
+  class="book-card"
+  appHighlight="rgba(0, 245, 255, 0.06)"
+  [class.unavailable]="isUnavailable">
+
+  <div class="card-header">
+    <h3>{{ book.title | titlecase }}</h3>
+    <span class="category">{{ book.category }}</span>
+  </div>
+
+  <p class="author">
+    {{ book.author }}
+  </p>
+
+  <p class="description">
+    {{ book.description | truncate:120 }}
+  </p>
+
+  <div class="meta">
+    <span>ISBN: {{ book.isbn }}</span>
+    <span>Available: {{ book.availableCopies }}</span>
+  </div>
+
+  <div class="actions">
+
+    <a
+      [routerLink]="['/books', book.id]"
+      class="details-btn">
+      View Details
+    </a>
+
+    <button
+      *ngIf="showBorrowButton"
+      (click)="onBorrow()"
+      [disabled]="isUnavailable"
+      class="borrow-btn">
+
+      {{ isUnavailable ? 'Unavailable' : 'Borrow' }}
+
+    </button>
+
+  </div>
+
+</div>

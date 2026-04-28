@@ -1,0 +1,137 @@
+<div class="my-books-container">
+  <header class="dashboard-header">
+    <h2>{{ pageHeading }}</h2>
+    <span class="admin-badge" *ngIf="authService.isLibrarian()"> Management View </span>
+  </header>
+
+  <p class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </p>
+
+  <div class="success-toast" *ngIf="successMessage">
+    <span class="neon-icon">✓</span> {{ successMessage }}
+  </div>
+
+  <ng-container *ngIf="issues$ | async as issues">
+    <table *ngIf="issues.length > 0; else noBooks">
+      <thead>
+        <tr>
+          <th *ngIf="authService.isLibrarian()">Borrower</th>
+          <th>Title</th>
+          <th>Due Date</th>
+          <th>Status</th>
+          <th>Fine</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let issue of issues; trackBy: trackByIssue">
+          <td *ngIf="authService.isLibrarian()">
+            <strong>USER ID: {{ issue.userId }}</strong>
+          </td>
+
+          <td>{{ issue.book?.title }}</td>
+
+          <td>
+            {{ issue.dueDate | date: 'mediumDate' }} <br />
+            <small [ngClass]="{ 'text-danger': (issue | overdueStatus) === 'overdue' }">
+              {{ issue.dueDate | daysUntil }}
+            </small>
+          </td>
+
+          <td [ngClass]="issue.status">
+            {{ issue.status | titlecase }}
+          </td>
+
+          <td [class.has-fine]="(issue.fineAmount || 0) > 0">
+            {{ issue.fineAmount | currency }}
+          </td>
+
+          <td>
+            <ng-container *ngIf="issue.status !== 'returned'">
+              <button
+                (click)="renewBook(issue.id)"
+                [disabled]="issue.renewCount >= 2 || issue.status === 'overdue'"
+                title="Cannot renew if overdue"
+              >
+                Renew
+              </button>
+
+              <button (click)="returnBook(issue.id)">Return</button>
+
+              <button
+                *ngIf="!authService.isLibrarian() && issue.fineAmount > 0 && !issue.finePaid"
+                (click)="payFine(issue.id)"
+                class="pay-btn"
+              >
+                Pay Fine
+              </button>
+            </ng-container>
+
+            <span *ngIf="issue.status === 'returned'" class="returned-text"> Settled </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noBooks>
+      <div class="empty-state">
+        <p>Currently no active borrowed books found.</p>
+      </div>
+    </ng-template>
+  </ng-container>
+
+  <ng-container *ngIf="!authService.isLibrarian()">
+    <hr />
+    <div class="summary-wrapper">
+      <h2 class="dashboard-title">Financial Summary</h2>
+
+      <ng-container *ngIf="fines$ | async as finesData">
+        <div class="dashboard-grid">
+          <div class="glass-card cyan-glow">
+            <div class="card-header">
+              <i class="icon-accrued"></i>
+              <label>Lifetime Accrued</label>
+            </div>
+            <div class="card-body">
+              <span class="value">{{ finesData.totalFines | currency }}</span>
+            </div>
+            <div class="glow-layer"></div>
+          </div>
+
+          <div class="glass-card purple-glow">
+            <div class="card-header">
+              <i class="icon-paid"></i>
+              <label>Total Settled</label>
+            </div>
+            <div class="card-body">
+              <span class="value">{{ finesData.paidFines | currency }}</span>
+            </div>
+            <div class="glow-layer"></div>
+          </div>
+
+          <div class="glass-card pink-glow" [class.danger-pulse]="finesData.pendingFines > 0">
+            <div class="card-header">
+              <i class="icon-pending"></i>
+              <label>Outstanding Balance</label>
+            </div>
+            <div class="card-body">
+              <span class="value accent">{{ finesData.pendingFines | currency }}</span>
+            </div>
+            <div class="glow-layer"></div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <app-confirm-dialog
+    [isOpen]="isDialogOpen"
+    [message]="dialogMessage"
+    (confirmed)="handleDialogConfirm()"
+    (cancelled)="handleDialogCancel()"
+  >
+    <div *ngIf="dialogMode === 'alert'" class="neon-glow-icon">✨</div>
+  </app-confirm-dialog>
+</div>

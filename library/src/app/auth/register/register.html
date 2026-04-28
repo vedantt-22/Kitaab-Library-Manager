@@ -1,0 +1,101 @@
+<div class="auth-container">
+
+  <form #registerForm="ngForm"
+        (ngSubmit)="onSubmit(registerForm)"
+        class="auth-card">
+
+    <h2>Register</h2>
+
+    <!-- Username -->
+    <div class="form-group">
+      <input type="text"
+             name="username"
+             [(ngModel)]="username"
+             #usernameModel="ngModel"
+             required
+             minlength="3"
+             placeholder="Username">
+
+      <small class="error"
+             *ngIf="usernameModel.invalid && usernameModel.touched">
+        <span *ngIf="usernameModel.errors?.['required']">
+          Username is required.
+        </span>
+        <span *ngIf="usernameModel.errors?.['minlength']">
+          Minimum 3 characters required.
+        </span>
+      </small>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <input type="email"
+             name="email"
+             [(ngModel)]="email"
+             #emailModel="ngModel"
+             required
+             email
+             placeholder="Email">
+
+      <small class="error"
+             *ngIf="emailModel.invalid && emailModel.touched">
+        <span *ngIf="emailModel.errors?.['required']">
+          Email is required.
+        </span>
+        <span *ngIf="emailModel.errors?.['email']">
+          Enter a valid email address.
+        </span>
+      </small>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <input type="password"
+             name="password"
+             [(ngModel)]="password"
+             #passwordModel="ngModel"
+             required
+             minlength="6"
+             placeholder="Password">
+
+      <small class="error"
+             *ngIf="passwordModel.invalid && passwordModel.touched">
+        <span *ngIf="passwordModel.errors?.['required']">
+          Password is required.
+        </span>
+        <span *ngIf="passwordModel.errors?.['minlength']">
+          Minimum 6 characters required.
+        </span>
+      </small>
+    </div>
+
+    <!-- Full Name -->
+    <div class="form-group">
+      <input type="text"
+             name="fullName"
+             [(ngModel)]="fullName"
+             #fullNameModel="ngModel"
+             required
+             placeholder="Full Name">
+
+      <small class="error"
+             *ngIf="fullNameModel.invalid && fullNameModel.touched">
+        Full name is required.
+      </small>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit"
+            [disabled]="registerForm.invalid"
+            class="primary-btn">
+      Register
+    </button>
+
+    <!-- API Error -->
+    <p class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+
+  </form>
+
+</div>
